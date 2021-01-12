@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\{{modelName}}Request;
+use Illuminate\Http\Request;
+use App\Models\{{modelName}};
+
+class {{modelName}}Controller extends Controller
+{
+    public function index()
+    {
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = {{modelName}}::all();
+
+        return view('admin.bread.index',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function store(Request $request)
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Created Successfully!');
+    }
+
+    public function show({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = ${{modelNameSingularLowerCase}};
+
+        return view('admin.bread.show',compact(
+            'data',
+            'dataType'
+        ));
+
+    }
+    
+    public function edit({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = ${{modelNameSingularLowerCase}};
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function create()
+    {
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = null;
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function update(Request $request)
+    {
+        ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($request->id);
+
+        ${{modelNameSingularLowerCase}}->update($request->all());
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Updated Successfully!');
+    }
+
+    public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        ${{modelNameSingularLowerCase}}->delete();
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Deleted Successfully!');
+
+    }
+
+
+    public function bulkDestroy(Request $request){
+
+        {{modelName}}::destroy($request->ids);
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Deleted Successfully!');
+    }
+}
