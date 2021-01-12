@@ -66,67 +66,8 @@ class CRUDGenerator extends Command
     }
 
 
-    public function adminView($model_name){
-        $path = base_path().'/resources/views/admin/'. strtolower(Str::plural($model_name));
-        File::makeDirectory($path, $mode = 0777, true, true);
-        
-        $indexTemplate = str_replace(
-            [
-                '{{modelName}}',
-                '{{modelNamePluralUcCase}}',
-                '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
-            ],
-            [
-                $model_name,
-                ucwords(Str::plural($model_name)),
-                strtolower(Str::plural($model_name)),
-                strtolower($model_name)
-            ],
-            $this->getStub('IndexView')
-        );
-
-        file_put_contents(base_path("/resources/views/admin/".strtolower(Str::plural($model_name))."/index.blade.php"),$indexTemplate);
-
-
-
-        $showTemplate = str_replace(
-            [
-                '{{modelNamePluralUcCase}}',
-                '{{modelNameSingularLowerCase}}',
-                '{{modelNamePluralLowerCase}}',
-            ],
-            [
-                ucwords(Str::plural($model_name)),
-                strtolower($model_name),
-                strtolower(Str::plural($model_name))
-            ],
-            $this->getStub('ShowView')
-        );
-
-        file_put_contents(base_path("/resources/views/admin/".strtolower(Str::plural($model_name))."/show.blade.php"),$showTemplate);
-
-
-
-        $addEditTemplate = str_replace(
-            [
-                '{{modelNamePluralUcCase}}',
-                '{{modelNameSingularlowerCase}}',
-                '{{modelNameSingularUcCase}}',
-            ],
-            [
-                ucwords(Str::plural($model_name)),
-                strtolower($model_name),
-                ucwords(strtolower($model_name)),
-            ],
-            $this->getStub('AddEditView')
-        );
-
-        file_put_contents(base_path("/resources/views/admin/".strtolower(Str::plural($model_name))."/add-edit.blade.php"),$addEditTemplate);
-    }
-
     public function addPermissions($tableName){
-        $actions = collect(['browse','create','read','update','delete']);
+        $actions = collect(['browse','create','show','update','destroy']);
 
         $permissions = $actions->map(function($itme) use($tableName){
             return [
@@ -146,12 +87,12 @@ class CRUDGenerator extends Command
         $verbs=[
                 'index'=>'get',
                 'create'=>'get',
-                'show'=>'get',
                 'edit'=>'get',
                 'destroy'=>'get',
                 'store'=>'post',
                 'update'=>'post',
-                'bulkdestroy'=>'post'
+                'bulkdestroy'=>'post',
+                'show'=>'get',
             ];
 
         $routes ="Route::group(['prefix'=>'".strtolower($name)."'],function(){\n";
@@ -161,7 +102,9 @@ class CRUDGenerator extends Command
 
             if($key == 'index'){
                 $route = "";
-            }elseif($key == "show" || $key == "edit" || $key == "destroy" || $key == "update"){
+            }elseif($key == "show"){
+                $route = "{".singularDatatype($name)."}";
+            }elseif($key == "edit" || $key == "destroy" || $key == "update"){
                 $route = $key."/{".singularDatatype($name)."}";
             }else{
                 $route = $key;

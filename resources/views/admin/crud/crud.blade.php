@@ -38,7 +38,7 @@
 
     <form 
         method="post" 
-        action="/crud"
+        action="{{ route('crud.create') }}"
         role="form"
         enctype="multipart/form-data"
     >
@@ -161,7 +161,7 @@
                     autocomplete="off">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" name="type[]" placeholder="Column name" 
+                    <input type="text" class="form-control" name="type[]" placeholder="Type" 
                         autocomplete="off">
                 </div>
                 <div class="col">
