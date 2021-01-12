@@ -252,6 +252,8 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+
+
         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
@@ -290,6 +292,15 @@ return [
                 ],
             ],
         ],
+
+        
+        [
+            'text' => 'CRUD',
+            'url'  => 'admin/crud',
+            'icon' => 'fas fa-th',
+        ],
+
+
         ['header' => 'labels'],
         [
             'text'       => 'important',

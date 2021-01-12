@@ -32,5 +32,7 @@ Auth::routes();
 Route::group(['prefix'=>'admin'],function(){   
     
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
+    Route::get('/crud', [App\Http\Controllers\CRUDController::class, 'index'])->name('admin.crud');
+    Route::post('/crud', [App\Http\Controllers\CRUDController::class, 'crud'])->name('crud.create');
 
 });

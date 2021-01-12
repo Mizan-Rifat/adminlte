@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Artisan;
 
 class CRUDController extends Controller
 {
+
+    public function index(){
+        return view('admin.crud.crud');
+    }
     public function crud(Request $request){
         $columns = [];
         $table = [];
