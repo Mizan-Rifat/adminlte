@@ -42,6 +42,10 @@ class CRUDGenerator extends Command
         $data = $this->argument('data');
 
         // dd($data);
+        if($data['fields']['permissions']){
+            $this->addPermissions($data['model_name']);
+            // $this->addPermissions($data['table']['name']);
+        }
 
         if($data['fields']['routes']){
             $this->routes($data['model_name']);
@@ -62,6 +66,23 @@ class CRUDGenerator extends Command
         
     }
 
+    public function addPermissions($modelName){
+
+        $tableName = strtolower(Str::plural($modelName));
+        $actions = collect(['browse','create','show','update','destroy']);
+
+        $permissions = $actions->map(function($itme) use($tableName){
+            return [
+                'title'=>$itme.'_'.$tableName,
+                'table_name'=>$tableName
+
+            ];
+        });
+
+        DB::table('permissions')
+        ->insert($permissions->toArray());
+
+    }
 
     public function routes($name){
         
