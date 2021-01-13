@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers;
+
+// use App\Http\Requests\{{modelName}}Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Models\{{modelName}};
+
+class {{modelName}}Controller extends Controller
+{
+    public function index()
+    {
+        Gate::authorize(get_gate_action('{{modelName}}','browse'));
+
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = {{modelName}}::all();
+
+        return view('admin.bread.index',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function store(Request $request)
+    {
+        Gate::authorize(get_gate_action('{{modelName}}','create'));
+
+        ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Created Successfully!');
+    }
+
+    public function show({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        
+        Gate::authorize(get_gate_action('{{modelName}}','show'));
+
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = ${{modelNameSingularLowerCase}};
+
+        return view('admin.bread.show',compact(
+            'data',
+            'dataType'
+        ));
+
+    }
+    
+    public function edit({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        Gate::authorize(get_gate_action('{{modelName}}','update'));
+
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = ${{modelNameSingularLowerCase}};
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function create()
+    {
+        
+        Gate::authorize(get_gate_action('{{modelName}}','create'));
+
+        $dataType = '{{modelNameSingularLowerCase}}';
+        $data = null;
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function update(Request $request)
+    {
+        
+        Gate::authorize(get_gate_action('{{modelName}}','update'));
+
+        ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($request->id);
+
+        ${{modelNameSingularLowerCase}}->update($request->all());
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Updated Successfully!');
+    }
+
+    public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        
+        Gate::authorize(get_gate_action('{{modelName}}','destroy'));
+
+        ${{modelNameSingularLowerCase}}->delete();
+
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Deleted Successfully!');
+
+    }
+
+
+    public function bulkDestroy(Request $request){
+
+        Gate::authorize(get_gate_action('{{modelName}}','destroy'));
+
+        {{modelName}}::destroy($request->ids);
+        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Deleted Successfully!');
+    }
+}
