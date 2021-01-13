@@ -8,7 +8,7 @@
 <td class="project-actions text-right">
 
 
-    @can(get_gate_action($dataType,'read'))
+    @can(get_gate_action($dataType,'show'))
         <a class="btn btn-primary btn-sm" href="{{ route($showroute,$arg ) }}">
             <i class="fas fa-folder">
             </i>
@@ -24,7 +24,7 @@
         </a>
     @endcan
 
-    @can(get_gate_action($dataType,'delete'))
+    @can(get_gate_action($dataType,'destroy'))
         <a class="btn btn-danger btn-sm" href="{{ route($destroyroute,$arg) }}">
             <i class="fas fa-trash">
             </i>

@@ -241,6 +241,17 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        ['header' => 'User Roles'],
+        [
+            'text' => 'Roles',
+            'url'  => 'admin/roles',
+            'icon' => 'fas fa-user-lock',
+        ],
+        [
+            'text' => 'Permissions',
+            'url'  => 'admin/permissions',
+            'icon' => 'fas fa-user-lock',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

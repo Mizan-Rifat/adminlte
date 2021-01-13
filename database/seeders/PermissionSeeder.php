@@ -19,12 +19,6 @@ class PermissionSeeder extends Seeder
 
         $data = $tables->crossJoin($actions);
 
-        // $actions = collect(['browse','create','read','update','delete']);
-        // $tables = collect(['users','permissions','roles']);
-
-
-        // $data = $tables->crossJoin($actions);
-
         $dataItesm = $data->map(function($item){
             return [
                 'title'=>$item[1].'_'.$item[0],

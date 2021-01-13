@@ -10,7 +10,7 @@
 
     @endcan
     
-    @can(get_gate_action($dataType,'delete'))
+    @can(get_gate_action($dataType,'destroy'))
 
         <a class="btn btn-danger" href='' id="deleteBtn">
             <i class="fas fa-trash">
