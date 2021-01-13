@@ -2,7 +2,7 @@
 
 @php
 
-    $items = [ 'migration','model','controller','formRequest','routes','permissions'];
+    $items = [ 'migration','model','controller','formRequest','routes'];
 
     $idOptions = collect([
         [
