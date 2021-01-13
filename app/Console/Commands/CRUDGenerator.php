@@ -167,6 +167,7 @@ class CRUDGenerator extends Command
     }
     protected function formRequest($name)
     {
+        $path = app_path("/Http/Requests/");
         $requestTemplate = str_replace(
             [
                 '{{modelName}}',
@@ -179,6 +180,10 @@ class CRUDGenerator extends Command
             ],
             $this->getStub('RequestView')
         );
+        
+        if (! File::exists($path)) {
+            File::makeDirectory($path);
+        }
 
         file_put_contents(app_path("/Http/Requests/{$name}Request.php"), $requestTemplate);
     }
