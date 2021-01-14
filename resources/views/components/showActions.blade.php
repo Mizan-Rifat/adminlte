@@ -15,7 +15,7 @@
         </a>
     @endcan
 
-    @can(get_gate_action($dataType,'delete'))
+    @can(get_gate_action($dataType,'destroy'))
         <a class="btn btn-danger m-1" href="{{ route( $destroyroute,$arg ) }}">
             <i class="fas fa-trash">
             </i>

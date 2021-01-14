@@ -20,6 +20,7 @@ class CRUDController extends Controller
         $fields['controller'] = $request->controller;
         $fields['formRequest'] = $request->formRequest;
         $fields['routes'] = $request->routes;
+        $fields['permissions'] = $request->permissions;
 
         if($request->migration){
 
