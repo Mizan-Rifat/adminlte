@@ -15,7 +15,11 @@
 <div id="imgContainer">
   <div class="d-flex justify-content-center">
     <div class="img-circle d-flex justify-content-center align-items-center">
-      <img class="profile-user-img img-fluid" src="{{ asset('/images'.$user->avatar) }}" alt="User profile picture">
+      <img 
+        class="profile-user-img img-fluid" 
+        src="{{ $user->avatar == null ? asset('/images/avatars/no_avatar.png') : asset('/images'.$user->avatar)}}" 
+        alt="User profile picture"
+      >
 
       <div class="spinner-border" id='spinner' role="status">
         <span class="sr-only">Loading...</span>

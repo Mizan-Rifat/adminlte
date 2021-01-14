@@ -39,7 +39,25 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/crud', [App\Http\Controllers\CRUDController::class, 'index'])->name('admin.crud');
     Route::post('/crud', [App\Http\Controllers\CRUDController::class, 'crud'])->name('crud.create');
 
+    Route::group(['prefix'=>'profile'],function(){  
+        Route::get('/', [App\Http\Controllers\ProfileController::class, 'show'])->name('admin.profile');
+        Route::get('/change_password', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.password_change');
+        Route::post('/change_avatar/{user}', [App\Http\Controllers\ProfileController::class, 'updateAvatar'])->name('profile.update_avatar');
 
+    });
+
+    Route::group(['prefix'=>'user'],function(){
+        Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
+        Route::get('/show/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+        Route::get('/edit/{user}', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+        Route::get('/destroy/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+        Route::post('/store', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+        Route::post('/update/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\UserController::class, 'bulkdestroy'])->name('users.bulkdestroy');
+        Route::post('/removeimage/{user}', [App\Http\Controllers\ProfileController::class, 'removeImage'])->name('users.removeimage');
+    });
+    
     Route::group(['prefix'=>'roles'],function(){
         Route::get('/', [App\Http\Controllers\RoleController::class, 'index'])->name('roles.index');
         Route::get('/create', [App\Http\Controllers\RoleController::class, 'create'])->name('roles.create');

@@ -7,7 +7,7 @@
           <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="card card-primary card-outline">
+            <div class="card card-primary card-outline" style='min-height:300px;'>
               <div class="card-body box-profile">
                 <div class="text-center">
 
@@ -31,20 +31,6 @@
 
                 @endforeach
 
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
-                </ul>
-
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
               </div>
 
               <!-- /.card-body -->
@@ -55,7 +41,7 @@
           </div>
           <!-- /.col -->
           <div class="col-md-9">
-            <div class="card">
+            <div class="card" style='min-height:300px;'>
               <div class="card-header p-2">
 
                     <h5 class="card-title">  

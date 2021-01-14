@@ -255,13 +255,8 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
 
 
@@ -454,6 +449,37 @@ return [
                     'asset' => true,
                     'location' => 'js/world.js',
                 ]
+            ],
+        ],
+        'Cropme' => [
+            'active' => false,
+            'files' => [
+                
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/cropme.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/cropme.min.css',
+                ],
+            ],
+        ],
+        'ImageUpload'=>[
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/image-uploader.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/image-uploader.js',
+                ],
             ],
         ],
     ],
