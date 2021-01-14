@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
                     }
                 },
             ],
-            'password' => ['string','min:8', 'confirmed'],
+            'password' => ['nullable','string','min:8', 'confirmed'],
         ];
        return Route::currentRouteName() == 'users.store' ? $storeRules : $updateRules;
     }

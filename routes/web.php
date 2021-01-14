@@ -46,10 +46,10 @@ Route::group(['prefix'=>'admin'],function(){
 
     });
 
-    Route::group(['prefix'=>'user'],function(){
+    Route::group(['prefix'=>'users'],function(){
         Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
         Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
-        Route::get('/show/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+        Route::get('/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
         Route::get('/edit/{user}', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
         Route::get('/destroy/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
         Route::post('/store', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');

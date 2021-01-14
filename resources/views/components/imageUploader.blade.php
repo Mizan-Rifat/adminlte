@@ -17,5 +17,6 @@
     document.addEventListener("DOMContentLoaded", function() {
         
         $('.input-images').imageUploader();
+        // $('.input-images input[type=file]').removeAttr('multiple');
     });
 </script>

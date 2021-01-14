@@ -8,7 +8,7 @@ foreach($allFields as $field){
 
     }
     elseif($field['type'] == 'image'){
-        $field['value'] = isset($data) ? $data->{$field['field']} : [];
+        $field['value'] = isset($data) ? asset('images'.$data->{$field['field']}) : [];
     }
     elseif($field['type'] == 'relationship-select'){
         $field['type']='select';
@@ -28,8 +28,10 @@ foreach($allFields as $field){
         $field['value'] = isset($data) ? $data->{$field['edit_field']} : false;
 
     }
-    
-    array_push($fields,$field);
+
+    if($field['edit_field'] != null){
+        array_push($fields,$field);
+    }
 
    
 
@@ -67,6 +69,16 @@ foreach($allFields as $field){
                         :name='$column' 
                         :placeholder='$label' 
                         :value='$value'  
+                    />
+
+                @endif 
+                
+                @if($field['type'] == 'password')
+                    <x-input 
+                        :label='$label' 
+                        :name='$column' 
+                        :placeholder='$label' 
+                        :value='null'  
                     />
 
                 @endif

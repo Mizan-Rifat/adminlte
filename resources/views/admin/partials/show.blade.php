@@ -1,7 +1,7 @@
 @php
 $fields = [];
 
-foreach($allFields as $field){
+foreach($allFields as $key => $field){
     if($field['type'] == 'images'){
         $field['value'] = json_decode($data->image);
     }
@@ -15,15 +15,17 @@ foreach($allFields as $field){
     elseif($field['type'] == 'relationship-multi-select'){
         $field['type']='multi-select';
         $field['value'] = $data->{$field['field']}->pluck($field['relationship_field'])->toArray();
-    }else{
+    }
+    else{
         $field['value'] =$data->{$field['field']};
 
     }
-    
-    array_push($fields,$field);
+
+    if($field['type'] != 'password'){
+        array_push($fields,$field);
+    }
 
 }
-
 
 @endphp
 
@@ -61,7 +63,7 @@ foreach($allFields as $field){
                 @if($field['type'] == 'images')
                     <img src="{{ isset($field['value']) ? asset($field['value'][0]) : null }}" alt="" style="max-width: 200px;">
                 @elseif($field['type'] == 'image')
-                    <img src="{{ isset($field['value']) ? asset($field['value']) : null }}" alt="" style="max-width: 200px;">
+                    <img src="{{ isset($field['value']) ? asset('images'.$field['value']) : null }}" alt="" style="max-width: 200px;">
                 @elseif($field['type'] == 'text-area')
                     <p>{!! $field['value'] !!}</p>
                 @elseif($field['type'] == 'multi-select')

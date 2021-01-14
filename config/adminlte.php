@@ -241,7 +241,12 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'User Roles'],
+        ['header' => 'USERS'],
+        [
+            'text' => 'Users',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         [
             'text' => 'Roles',
             'url'  => 'admin/roles',

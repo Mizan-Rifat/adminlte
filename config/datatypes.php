@@ -1,6 +1,51 @@
 <?php
 
 return [
+    'users'=>[
+        'nextBtn'=>false,
+        'fields'=>[
+            [   
+                'label'=>'Name',
+                'column'=>'name',
+                'field'=>'name',
+                'edit_field'=>'name',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [   
+                'label'=>'Email',
+                'column'=>'email',
+                'field'=>'email',
+                'edit_field'=>'email',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [   
+                'label'=>'Avatar',
+                'column'=>'avatar',
+                'field'=>'avatar',
+                'edit_field'=>null,
+                'type'=>'image',
+                "indexShow"=>true,
+            ],
+            [   
+                'label'=>'Password',
+                'column'=>'password',
+                'field'=>'password',
+                'edit_field'=>'password',
+                'type'=>'password',
+                "indexShow"=>false,
+            ],
+            [   
+                'label'=>'Confirm Password',
+                'column'=>'password_confirmation',
+                'field'=>'password',
+                'edit_field'=>'password',
+                'type'=>'password',
+                "indexShow"=>false,
+            ],
+        ],
+    ],
     
     'roles'=>[
         'nextBtn'=>false,

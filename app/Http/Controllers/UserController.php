@@ -70,10 +70,12 @@ class UserController extends Controller
         $validatedData = $request->validated();
         unset($validatedData['old_password']);
 
-        if(isset($validatedData['password'])){
+        if(isset($validatedData['password']) && $validatedData['password'] != null){
             $validatedData['password'] = Hash::make($validatedData['password']);
+        }else{
+            unset($validatedData['password']);
         }
-
+        
         $user->update($validatedData);
 
         return redirect()->back()->with('message', 'Updated Successfully!');
