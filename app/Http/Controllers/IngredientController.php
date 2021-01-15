@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Requests\IngredientRequest;
+use App\Http\Requests\IngredientRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Ingredient;
@@ -22,7 +22,7 @@ class IngredientController extends Controller
         ));
     }
 
-    public function store(Request $request)
+    public function store(IngredientRequest $request)
     {
         Gate::authorize(get_gate_action('Ingredient','create'));
 
@@ -73,7 +73,7 @@ class IngredientController extends Controller
         ));
     }
 
-    public function update(Request $request,Ingredient $ingredient)
+    public function update(IngredientRequest $request,Ingredient $ingredient)
     {
         
         Gate::authorize(get_gate_action('Ingredient','update'));
