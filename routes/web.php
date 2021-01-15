@@ -94,3 +94,13 @@ Route::group(['prefix'=>'admin'],function(){
 
 });
 
+Route::group(['prefix'=>'ingredients'],function(){
+	Route::get('/', [App\Http\Controllers\IngredientController::class, 'index'])->name('ingredients.index');
+	Route::get('/create', [App\Http\Controllers\IngredientController::class, 'create'])->name('ingredients.create');
+	Route::get('/edit/{ingredient}', [App\Http\Controllers\IngredientController::class, 'edit'])->name('ingredients.edit');
+	Route::get('/destroy/{ingredient}', [App\Http\Controllers\IngredientController::class, 'destroy'])->name('ingredients.destroy');
+	Route::post('/store', [App\Http\Controllers\IngredientController::class, 'store'])->name('ingredients.store');
+	Route::post('/update/{ingredient}', [App\Http\Controllers\IngredientController::class, 'update'])->name('ingredients.update');
+	Route::post('/bulkdestroy', [App\Http\Controllers\IngredientController::class, 'bulkdestroy'])->name('ingredients.bulkdestroy');
+	Route::get('/{ingredient}', [App\Http\Controllers\IngredientController::class, 'show'])->name('ingredients.show');
+});
