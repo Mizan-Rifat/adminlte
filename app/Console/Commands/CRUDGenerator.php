@@ -97,7 +97,7 @@ class CRUDGenerator extends Command
                 'show'=>'get',
             ];
 
-        $routes ="Route::group(['prefix'=>'".strtolower($name)."'],function(){\n";
+        $routes ="Route::group(['prefix'=>'".strtolower(Str::plural($name))."'],function(){\n";
 
         foreach ($verbs as $key => $verb) {
             // $route = $key == 'index' ? "" : $key."/{".singularDatatype($name)."}";

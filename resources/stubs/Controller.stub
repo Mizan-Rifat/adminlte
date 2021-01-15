@@ -73,16 +73,14 @@ class {{modelName}}Controller extends Controller
         ));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,{{modelName}} ${{modelNameSingularLowerCase}})
     {
         
         Gate::authorize(get_gate_action('{{modelName}}','update'));
 
-        ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($request->id);
-
         ${{modelNameSingularLowerCase}}->update($request->all());
 
-        return redirect()->route('{{modelNamePluralLowerCase}}.index')->with('message', 'Updated Successfully!');
+        return redirect()->back()->with('message', 'Updated Successfully!');
     }
 
     public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
