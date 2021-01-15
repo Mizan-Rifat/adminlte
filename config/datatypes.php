@@ -93,4 +93,20 @@ return [
         ],
     ],
 
+
+    'categories'=>[
+        'nextBtn'=>false,
+        'fields'=>[
+            [
+                'label'=>'Name',
+                'column'=>'name',
+                'field'=>'name',
+                'edit_field'=>'name',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            
+        ],
+    ],
+
 ];

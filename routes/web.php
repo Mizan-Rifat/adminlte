@@ -80,6 +80,17 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/{permission}', [App\Http\Controllers\PermissionController::class, 'show'])->name('permissions.show');
     });
 
-});
+        
+    Route::group(['prefix'=>'categories'],function(){
+        Route::get('/', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('categories.create');
+        Route::get('/edit/{category}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+        Route::get('/destroy/{category}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::post('/store', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
+        Route::post('/update/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('categories.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\CategoryController::class, 'bulkdestroy'])->name('categories.bulkdestroy');
+        Route::get('/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
+    });
 
+});
 

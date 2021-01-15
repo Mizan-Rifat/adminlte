@@ -241,6 +241,14 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+
+        [
+            'text'        => 'Category',
+            'url'         => 'admin/categories',
+            'icon'        => 'fas fa-clipboard-list',
+        ],
+
+
         ['header' => 'USERS'],
         [
             'text' => 'Users',
