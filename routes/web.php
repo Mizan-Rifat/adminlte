@@ -103,5 +103,16 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/{ingredient}', [App\Http\Controllers\IngredientController::class, 'show'])->name('ingredients.show');
     });
 
+    Route::group(['prefix'=>'addableitems'],function(){
+        Route::get('/', [App\Http\Controllers\AddableItemController::class, 'index'])->name('addableitems.index');
+        Route::get('/create', [App\Http\Controllers\AddableItemController::class, 'create'])->name('addableitems.create');
+        Route::get('/edit/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'edit'])->name('addableitems.edit');
+        Route::get('/destroy/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'destroy'])->name('addableitems.destroy');
+        Route::post('/store', [App\Http\Controllers\AddableItemController::class, 'store'])->name('addableitems.store');
+        Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
+        Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
+    });
+
 });
 
