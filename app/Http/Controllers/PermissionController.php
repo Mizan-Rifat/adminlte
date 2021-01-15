@@ -1,0 +1,110 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Permission;
+use Illuminate\Support\Facades\DB;
+
+class PermissionController extends Controller
+{
+    public function index()
+    {
+        $dataType = 'permission';
+        $data = Permission::all();
+
+        return view('admin.permissions.index',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function store(Request $request)
+    {
+        $permission = Permission::create($request->all());
+
+        return redirect()->route('permissions.index')->with('message', 'Created Successfully!');
+    }
+
+    public function show(Permission $permission)
+    {
+
+        $dataType = 'permission';
+        $data = $permission;
+
+        return view('admin.bread.show',compact(
+            'data',
+            'dataType'
+        ));
+
+    }
+    
+    public function edit(Permission $permission)
+    {
+        $dataType = 'permission';
+        $data = $permission;
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function create()
+    {
+        $dataType = 'permission';
+        $data = null;
+
+        return view('admin.bread.add-edit',compact(
+            'data',
+            'dataType'
+        ));
+    }
+
+    public function update(Request $request,Permission $permission)
+    {
+
+        $permission->update($request->all());
+
+        return redirect()->route('permissions.index')->with('message', 'Updated Successfully!');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+
+        return redirect()->route('permissions.index')->with('message', 'Deleted Successfully!');
+
+    }
+
+
+    public function bulkDestroy(Request $request){
+
+        Permission::destroy($request->ids);
+        return redirect()->route('permissions.index')->with('message', 'Deleted Successfully!');
+    }
+
+
+    public function generatePermissions(Request $request){
+        $validatedData = $request->validate([
+            'tableName'=>['required','string']
+        ]);
+
+
+        $actions = collect(['browse','create','show','update','destroy']);
+
+        $permissions = $actions->map(function($itme) use($validatedData){
+            return [
+                'title'=>$itme.'_'.$validatedData['tableName'],
+                'table_name'=>$validatedData['tableName']
+
+            ];
+        });
+
+        DB::table('permissions')
+        ->insert($permissions->toArray());
+
+        return redirect()->back()->with('message', 'Generated Successfully!');
+
+    }
+}
