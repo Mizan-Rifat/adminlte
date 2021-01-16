@@ -3,6 +3,7 @@
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-return get_route('Role','bulkdestroy');
+    return Permission::all()->pluck('id');
 });
 
 

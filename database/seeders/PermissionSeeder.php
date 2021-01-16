@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $actions = collect(['browse','create','show','update','destroy']);
-        $tables = collect(['users','permissions','roles']);
+        $tables = collect(['users','permissions','roles','ingredients']);
 
         $data = $tables->crossJoin($actions);
 
