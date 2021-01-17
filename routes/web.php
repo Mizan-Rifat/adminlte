@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Requests\IngredientRequest;
+use App\Models\Ingredient;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -22,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return Permission::all()->pluck('id');
+    return Ingredient::factory()->count(5)->make();
 });
 
 

@@ -28,6 +28,12 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div>{{$error}}</div>
+        @endforeach
+    @endif
+
 @include('admin.partials.table')
 
 @endsection

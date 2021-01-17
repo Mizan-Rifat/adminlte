@@ -9,11 +9,7 @@ use Illuminate\Validation\Rule;
 class IngredientRequest extends FormRequest
 {
 
-
-    public function authorize()
-    {
-        return true;
-    }
+  
 
     public function rules()
     {
@@ -24,7 +20,9 @@ class IngredientRequest extends FormRequest
             ];
         }else{
             return [
-                'name'=>['required','string',Rule::unique('ingredients','name')->ignore($this->ingredient)]
+                'name'=>['string',Rule::unique('ingredients','name')->ignore($this->ingredient)],
+                'ids'=>['array'],
+                'ids.*'=>['numeric'],
             ];
         }
 

@@ -26,7 +26,9 @@ class IngredientController extends Controller
     {
         Gate::authorize(get_gate_action('Ingredient','create'));
 
-        $ingredient = Ingredient::create($request->all());
+        $validatedData = $request->validated();
+
+        $ingredient = Ingredient::create($validatedData);
 
         return redirect()->route('ingredients.index')->with('message', 'Created Successfully!');
     }
@@ -77,8 +79,10 @@ class IngredientController extends Controller
     {
         
         Gate::authorize(get_gate_action('Ingredient','update'));
+        
+        $validatedData = $request->validated();
 
-        $ingredient->update($request->all());
+        $ingredient->update($validatedData);
 
         return redirect()->back()->with('message', 'Updated Successfully!');
     }
@@ -95,11 +99,14 @@ class IngredientController extends Controller
     }
 
 
-    public function bulkDestroy(Request $request){
+    public function bulkDestroy(IngredientRequest $request){
 
         Gate::authorize(get_gate_action('Ingredient','destroy'));
 
-        Ingredient::destroy($request->ids);
+        $validatedData = $request->validated();
+
+        Ingredient::destroy($validatedData['ids']);
+
         return redirect()->route('ingredients.index')->with('message', 'Deleted Successfully!');
     }
 }
