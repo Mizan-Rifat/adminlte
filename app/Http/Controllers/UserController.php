@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $dataType = 'user';
-        $data = User::all();
+        $data = User::with('roles')->get();
 
         return view('admin.bread.index',compact(
             'data',
@@ -46,9 +47,12 @@ class UserController extends Controller
         $dataType = 'user';
         $data = $user;
 
+        $roles = Role::all();
+
         return view('admin.bread.add-edit',compact(
             'data',
-            'dataType'
+            'dataType',
+            'roles',
         ));
     }
 
@@ -66,7 +70,6 @@ class UserController extends Controller
     public function update(UserRequest $request,User $user)
     {
 
-
         $validatedData = $request->validated();
         unset($validatedData['old_password']);
 
@@ -75,11 +78,16 @@ class UserController extends Controller
         }else{
             unset($validatedData['password']);
         }
+
+        $user->roles()->sync($validatedData['roles']);
+
+        if(isset($validatedData['roles'])){
+            unset($validatedData[' roles']);
+        }
         
         $user->update($validatedData);
 
         return redirect()->back()->with('message', 'Updated Successfully!');
-        // return redirect()->route('users.index')->with('message', 'Updated Successfully!');
     }
 
     public function destroy(User $user)
