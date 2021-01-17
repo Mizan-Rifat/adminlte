@@ -18,18 +18,8 @@ class AddableItem extends Model
 
     public function getFormattedPriceAttribute($value){
 
+        return money($this->price, 'BDT',true)->format();
         
-        $converting_amount = Currency::where('from_',$this->price_currency)
-                            ->where('to_',config('settings.currency'))
-                            ->first();
-
-
-
-        if($this->price_currency == config('settings.currency')){
-            return money($this->price,config('settings.currency'),true)->format(); 
-        }else{
-            return money($this->price,$this->price_currency,true)->convert(new Akaunting(config('settings.currency')),(float)$converting_amount->amount)->format();
-        }
     }
     
 }

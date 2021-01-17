@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Requests\AddableItemRequest;
+use App\Http\Requests\AddableItemRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\AddableItem;
@@ -22,8 +22,9 @@ class AddableItemController extends Controller
         ));
     }
 
-    public function store(Request $request)
+    public function store(AddableItemRequest $request)
     {
+
         Gate::authorize(get_gate_action('AddableItem','create'));
 
         $addableItem = AddableItem::create($request->all());
@@ -73,7 +74,7 @@ class AddableItemController extends Controller
         ));
     }
 
-    public function update(Request $request,AddableItem $addableItem)
+    public function update(AddableItemRequest $request,AddableItem $addableItem)
     {
         
         Gate::authorize(get_gate_action('AddableItem','update'));
@@ -101,5 +102,9 @@ class AddableItemController extends Controller
 
         AddableItem::destroy($request->ids);
         return redirect()->route('addableItems.index')->with('message', 'Deleted Successfully!');
+    }
+
+    public function removeImage(AddableItem $addableItem){
+        
     }
 }

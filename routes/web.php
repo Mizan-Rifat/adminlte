@@ -114,6 +114,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
         Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
+        Route::post('/removeimage/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'removeImage'])->name('addableitems.removeimage');
     });
 
 });

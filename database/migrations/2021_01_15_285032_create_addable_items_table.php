@@ -13,8 +13,7 @@ class CreateAddableItemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->longText('image')->nullable();
-            $table->decimal('price',12,4)->nullable();
-            $table->string('price_currency')->default('BDT');
+            $table->decimal('price',12,2)->nullable();
             $table->timestamps();
         });
     }
