@@ -20,6 +20,17 @@ return [
                 'type'=>'text',
                 "indexShow"=>true,
             ],
+            [
+                'label'=>'Roles',
+                'column'=>'roles',
+                'field'=>'roles',
+                'edit_field'=>'roles',
+                'type'=>'relationship-multi-select',
+                'relationship_field'=>'display_name',
+                "indexShow"=>true,
+                
+            ],
+
             [   
                 'label'=>'Avatar',
                 'column'=>'avatar',
