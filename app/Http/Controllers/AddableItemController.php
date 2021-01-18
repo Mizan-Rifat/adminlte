@@ -24,12 +24,13 @@ class AddableItemController extends Controller
 
     public function store(AddableItemRequest $request)
     {
-
         Gate::authorize(get_gate_action('AddableItem','create'));
 
-        $addableItem = AddableItem::create($request->all());
+        $validatedData = $request->validated();
 
-        return redirect()->route('addableItems.index')->with('message', 'Created Successfully!');
+        $addableItem = AddableItem::create($validatedData);
+
+        return redirect()->route('addableitems.index')->with('message', 'Created Successfully!');
     }
 
     public function show(AddableItem $addableItem)
@@ -79,7 +80,9 @@ class AddableItemController extends Controller
         
         Gate::authorize(get_gate_action('AddableItem','update'));
 
-        $addableItem->update($request->all());
+        $validatedData = $request->validate();
+
+        $addableItem->update($validatedData);
 
         return redirect()->back()->with('message', 'Updated Successfully!');
     }
@@ -91,7 +94,7 @@ class AddableItemController extends Controller
 
         $addableItem->delete();
 
-        return redirect()->route('addableItems.index')->with('message', 'Deleted Successfully!');
+        return redirect()->route('addableitems.index')->with('message', 'Deleted Successfully!');
 
     }
 
