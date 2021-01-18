@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/testview', function () {
+    return view('test');
 });
 Route::get('/test', function () {
-return get_route('Role','bulkdestroy');
+    return get_route('Role','bulkdestroy');
 });
 
 
