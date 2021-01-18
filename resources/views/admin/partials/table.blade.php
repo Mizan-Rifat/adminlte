@@ -53,7 +53,7 @@
 
                         @elseif($field['type'] == 'image')
                             <td>
-                            <img src="{{ asset('images'.$item->{$field['field']}) }}" alt="" style="width:80px">
+                              <img src="{{ $item->{$field['field']} == null ? asset('images/no_image.png') : asset($item->{$field['field']}) }}" alt="" style="width:80px">
                             </td>
                         @elseif($field['type'] == 'select')
                             <td>

@@ -4,11 +4,11 @@ $fields = [];
 
 foreach($allFields as $field){
     if($field['type'] == 'images'){
-        $field['value'] = isset($data) && $data->image != null ? json_decode($data->image) : [];
+        $field['value'] = isset($data) && $data->image != null ? json_decode($data->image) : null;
 
     }
     elseif($field['type'] == 'image'){
-        $field['value'] = isset($data) ? asset('images'.$data->{$field['field']}) : [];
+        $field['value'] = isset($data) && $data->image != null ? asset($data->{$field['field']}) : asset('images/no_image.png');
     }
     elseif($field['type'] == 'relationship-select'){
         $field['type']='select';
@@ -142,22 +142,11 @@ foreach($allFields as $field){
                 @endif
 
                 @if($field['type'] == 'image')
-
-                    @if(isset($data))
-                        @php
-                            $arg = [$dataType=>$data->id];
-                        @endphp
-                        <x-gallery 
-                            :images='[$value]'
-                            :label='$label'
-                            :removeRoute="get_route($dataType,'removeimage')"
-                            :arg="$arg"
-                        />
-                    @endif
-                    <x-imageUploader
+                    
+                    <x-singleImageUpload
                         label='Upload Image'
-                        :images='$value' 
-                    />
+                        :image='$value'
+                    /> 
 
                 @endif
 

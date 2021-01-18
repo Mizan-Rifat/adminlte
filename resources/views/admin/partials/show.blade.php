@@ -6,7 +6,7 @@ foreach($allFields as $key => $field){
         $field['value'] = json_decode($data->image);
     }
     elseif($field['type'] == 'image'){
-        $field['value'] = $data->{$field['field']};
+        $field['value'] = $data->{$field['field']} == null ? asset('images/no_image.png') : asset($data->{$field['field']});
     }
     elseif($field['type'] == 'relationship-select'){
         $field['type']='select';
@@ -63,7 +63,10 @@ foreach($allFields as $key => $field){
                 @if($field['type'] == 'images')
                     <img src="{{ isset($field['value']) ? asset($field['value'][0]) : null }}" alt="" style="max-width: 200px;">
                 @elseif($field['type'] == 'image')
-                    <img src="{{ isset($field['value']) ? asset('images'.$field['value']) : null }}" alt="" style="max-width: 200px;">
+                    <x-SingleImageGallery 
+                        label='Image'
+                        :image="$field['value']"
+                    />
                 @elseif($field['type'] == 'text-area')
                     <p>{!! $field['value'] !!}</p>
                 @elseif($field['type'] == 'multi-select')

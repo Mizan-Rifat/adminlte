@@ -26,17 +26,19 @@
 
 
 @section('content')
-@if(session()->has('message'))
+    @if(session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}
         </div>
     @endif
 
-@if ($errors->any())
- @foreach ($errors->all() as $error)
-     <div>{{$error}}</div>
- @endforeach
-@endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
 
 <div class="card card-primary">
     <div class="card-header">
