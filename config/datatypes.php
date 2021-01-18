@@ -151,7 +151,7 @@ return [
                 'column'=>'image',
                 'field'=>'image',
                 'edit_field'=>'image',
-                'type'=>'images',
+                'type'=>'image',
                 "indexShow"=>true,
             ],
             [

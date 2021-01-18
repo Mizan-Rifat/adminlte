@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Akaunting\Money\Currency;
 use App\Models\AddableItem;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    return get_route('Role','bulkdestroy');
+    Storage::delete('/images/addableItems/pt6FlxXfvdC6nezqu3mPMEGdBrbzdztutSLFM12d.jpg');
 });
 
 
@@ -114,7 +115,6 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
         Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
-        Route::post('/removeimage/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'removeImage'])->name('addableitems.removeimage');
     });
 
 });
