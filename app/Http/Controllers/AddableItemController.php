@@ -27,6 +27,12 @@ class AddableItemController extends Controller
     {
         $validatedData = $request->validated();
 
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $file->store('images/addableItems');
+            $validatedData['image'] = "images/addableItems/".$file->hashName();
+        }
+
         $addableItem = AddableItem::create($validatedData);
 
         return redirect()->route('addableitems.index')->with('message', 'Created Successfully!');
@@ -100,6 +106,8 @@ class AddableItemController extends Controller
         
         Gate::authorize(get_gate_action('AddableItem','destroy'));
 
+        Storage::delete($addableItem->image);
+
         $addableItem->delete();
 
         return redirect()->route('addableitems.index')->with('message', 'Deleted Successfully!');
@@ -119,7 +127,14 @@ class AddableItemController extends Controller
             'ids.*.numeric'=> 'The id must be numeric.'
         ]);
 
+        $images = AddableItem::whereIn('id',$request->ids)->pluck('image');
+
+        foreach ($images as $image) {
+            Storage::delete($image);
+        }
+
         AddableItem::destroy($request->ids);
+
         return redirect()->route('addableitems.index')->with('message', 'Deleted Successfully!');
     }
 }
