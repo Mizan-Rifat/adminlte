@@ -16,14 +16,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('users')->insert([
-        //     'name' => 'Mizan',
-        //     'email' => 'mizan@mail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => '$2y$10$VktB4exJSDaAn0H98m8PH.ziGSJIuxHW.33OOLj.u4EDQq4ZDLNfC', // 12345678
-        //     'remember_token' => Str::random(10),
+        DB::table('users')->insert([
+            'name' => 'Mizan',
+            'email' => 'mizan@mail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$VktB4exJSDaAn0H98m8PH.ziGSJIuxHW.33OOLj.u4EDQq4ZDLNfC', // 12345678
+            'remember_token' => Str::random(10),
             
-        // ]);
+        ]);
 
         
         \App\Models\User::factory(10)->create();
