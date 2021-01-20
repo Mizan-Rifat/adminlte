@@ -9,6 +9,7 @@ use Akaunting\Money\Currency;
 use App\Http\Requests\NutritionalItemRequest;
 use App\Models\AddableItem;
 use App\Models\NutritionalItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -117,6 +118,17 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
         Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
+    });
+    
+    Route::group(['prefix'=>'products'],function(){
+        Route::get('/', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+        Route::get('/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+        Route::get('/edit/{product}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+        Route::get('/destroy/{product}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+        Route::post('/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+        Route::post('/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\ProductController::class, 'bulkdestroy'])->name('products.bulkdestroy');
+        Route::get('/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
     });
 
     Route::group(['prefix'=>'nutritionalitems'],function(){

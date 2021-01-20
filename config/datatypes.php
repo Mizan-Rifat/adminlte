@@ -179,6 +179,90 @@ return [
             ],
             
         ],
+    'products'=>[
+        'nextBtn'=>true,
+        'fields'=>[
+            [
+                'label'=>'Name',
+                'column'=>'name',
+                'field'=>'name',
+                'edit_field'=>'name',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Category',
+                'column'=>'category_id',
+                'field'=>'category',
+                'edit_field'=>'categories',
+                'type'=>'relationship-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            [
+                'label'=>'Ingredients',
+                'column'=>'ingredients',
+                'field'=>'ingredients',
+                'edit_field'=>'ingredients',
+                'type'=>'relationship-multi-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            [
+                'label'=>'Addable Items',
+                'column'=>'addableItems',
+                'field'=>'addableItems',
+                'edit_field'=>'addableItems',
+                'type'=>'relationship-multi-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            // [
+            //     'label'=>'Nutritional Values',
+            //     'column'=>'addableItems',
+            //     'field'=>'nutritionalValues',
+            //     'edit_field'=>'addableItems',
+            //     'type'=>'multi-select-pivot',
+            //     "indexShow"=>false,
+                
+            // ],
+            [
+                'label'=>'Image',
+                'column'=>'image',
+                'field'=>'image',
+                'edit_field'=>'image',
+                'type'=>'images',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Description',
+                'column'=>'description',
+                'field'=>'description',
+                'edit_field'=>'description',
+                'type'=>'text-area',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Price',
+                'column'=>'price',
+                'field'=>'formatted_price',
+                'edit_field'=>'price',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Active',
+                'column'=>'active',
+                'field'=>'active',
+                'edit_field'=>'active',
+                'type'=>'switch',
+                "indexShow"=>true,
+            ],
+            
+        ]
     ],
 
 ];
