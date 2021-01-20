@@ -166,4 +166,19 @@ return [
         ],
     ],
 
+    'nutritionalItems'=>[
+        'nextBtn'=>false,
+        'fields'=>[
+            [
+                'label'=>'Title',
+                'column'=>'title',
+                'field'=>'title',
+                'edit_field'=>'title',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            
+        ],
+    ],
+
 ];

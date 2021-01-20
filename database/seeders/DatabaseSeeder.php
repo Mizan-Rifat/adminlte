@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
         ]);
         \App\Models\AddableItem::factory(10)->create();
+        \App\Models\NutritionalItem::factory(10)->create();
 
 
     }

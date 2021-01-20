@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Akaunting\Money\Currency;
+use App\Http\Requests\NutritionalItemRequest;
 use App\Models\AddableItem;
+use App\Models\NutritionalItem;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -24,7 +26,7 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    Storage::delete('/images/addableItems/pt6FlxXfvdC6nezqu3mPMEGdBrbzdztutSLFM12d.jpg');
+    NutritionalItem::factory()->count(10)->create();
 });
 
 
@@ -115,6 +117,17 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
         Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
+    });
+
+    Route::group(['prefix'=>'nutritionalitems'],function(){
+        Route::get('/', [App\Http\Controllers\NutritionalItemController::class, 'index'])->name('nutritionalitems.index');
+        Route::get('/create', [App\Http\Controllers\NutritionalItemController::class, 'create'])->name('nutritionalitems.create');
+        Route::get('/edit/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'edit'])->name('nutritionalitems.edit');
+        Route::get('/destroy/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'destroy'])->name('nutritionalitems.destroy');
+        Route::post('/store', [App\Http\Controllers\NutritionalItemController::class, 'store'])->name('nutritionalitems.store');
+        Route::post('/update/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'update'])->name('nutritionalitems.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\NutritionalItemController::class, 'bulkdestroy'])->name('nutritionalitems.bulkdestroy');
+        Route::get('/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'show'])->name('nutritionalitems.show');
     });
 
 });
