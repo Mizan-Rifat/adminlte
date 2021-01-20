@@ -135,4 +135,35 @@ return [
         ],
     ],
 
+    'addableItems'=>[
+        'nextBtn'=>false,
+        'fields'=>[
+            [
+                'label'=>'Name',
+                'column'=>'name',
+                'field'=>'name',
+                'edit_field'=>'name',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Image',
+                'column'=>'image',
+                'field'=>'image',
+                'edit_field'=>'image',
+                'type'=>'image',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Price',
+                'column'=>'price',
+                'field'=>'formatted_price',
+                'edit_field'=>'price',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            
+        ],
+    ],
+
 ];

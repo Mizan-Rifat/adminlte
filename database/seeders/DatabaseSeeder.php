@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             UserRoleSeeder::class,
-            RolePermissionSeeder::class
+            RolePermissionSeeder::class,
         ]);
+        \App\Models\AddableItem::factory(10)->create();
 
 
     }

@@ -5,6 +5,9 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Akaunting\Money\Currency;
+use App\Models\AddableItem;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,7 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    return get_route('Role','bulkdestroy');
+    Storage::delete('/images/addableItems/pt6FlxXfvdC6nezqu3mPMEGdBrbzdztutSLFM12d.jpg');
 });
 
 
@@ -101,6 +104,17 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{ingredient}', [App\Http\Controllers\IngredientController::class, 'update'])->name('ingredients.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\IngredientController::class, 'bulkdestroy'])->name('ingredients.bulkdestroy');
         Route::get('/{ingredient}', [App\Http\Controllers\IngredientController::class, 'show'])->name('ingredients.show');
+    });
+
+    Route::group(['prefix'=>'addableitems'],function(){
+        Route::get('/', [App\Http\Controllers\AddableItemController::class, 'index'])->name('addableitems.index');
+        Route::get('/create', [App\Http\Controllers\AddableItemController::class, 'create'])->name('addableitems.create');
+        Route::get('/edit/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'edit'])->name('addableitems.edit');
+        Route::get('/destroy/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'destroy'])->name('addableitems.destroy');
+        Route::post('/store', [App\Http\Controllers\AddableItemController::class, 'store'])->name('addableitems.store');
+        Route::post('/update/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'update'])->name('addableitems.update');
+        Route::post('/bulkdestroy', [App\Http\Controllers\AddableItemController::class, 'bulkdestroy'])->name('addableitems.bulkdestroy');
+        Route::get('/{addableItem}', [App\Http\Controllers\AddableItemController::class, 'show'])->name('addableitems.show');
     });
 
 });

@@ -1,8 +1,17 @@
 
-
 <div class="form-group">
     <label>{{$label}}</label>
     <div class="row">
+
+        @if($images == null)
+            <div class="col-sm-2 p-4 image_box">
+
+                <div style="position:relative;">
+                    <img src="{{ asset('images/no_image.png') }}" class="img-fluid mb-2 gallery_img"/>
+                </div>
+                
+            </div>
+        @endif
 
         @foreach($images as $image)
             <div class="col-sm-2 p-4 image_box">
@@ -10,7 +19,7 @@
                 <div style="position:relative;">
                     <a href="{{asset($image)}}" data-toggle="lightbox" class="image-container" 
                     data-image="{{$image}}">
-                        <img src="{{asset($image)}}" class="img-fluid mb-2 gallery_img" alt="white sample"/>
+                        <img src="{{ $image == null ? asset('images/no_image.png') : asset($image) }}" class="img-fluid mb-2 gallery_img"/>
                     </a>
                         <button     
                             type="button" 
