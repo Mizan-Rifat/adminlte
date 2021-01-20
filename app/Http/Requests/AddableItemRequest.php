@@ -39,12 +39,6 @@ class AddableItemRequest extends FormRequest
         }
     }
 
-       public function messages()
-        {
-            return [
-                'image.max' => 'The images may not be greater than :max kilobytes.'
-            ];
-        }
 
 
 
