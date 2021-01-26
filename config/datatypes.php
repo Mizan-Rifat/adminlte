@@ -180,5 +180,61 @@ return [
             
         ],
     ],
+    'products'=>[
+        'nextBtn'=>true,
+        'fields'=>[
+            [
+                'label'=>'Name',
+                'column'=>'name',
+                'field'=>'name',
+                'edit_field'=>'name',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Category',
+                'column'=>'category_id',
+                'field'=>'category',
+                'edit_field'=>'categories',
+                'type'=>'relationship-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            [
+                'label'=>'Image',
+                'column'=>'image',
+                'field'=>'image',
+                'edit_field'=>'image',
+                'type'=>'image',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Description',
+                'column'=>'description',
+                'field'=>'description',
+                'edit_field'=>'description',
+                'type'=>'text-area',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Price',
+                'column'=>'price',
+                'field'=>'formatted_price',
+                'edit_field'=>'price',
+                'type'=>'text',
+                "indexShow"=>true,
+            ],
+            [
+                'label'=>'Active',
+                'column'=>'active',
+                'field'=>'isActive',
+                'edit_field'=>'active',
+                'type'=>'switch',
+                "indexShow"=>true,
+            ],
+            
+        ]
+    ],
 
 ];
