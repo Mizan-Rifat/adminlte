@@ -4,6 +4,7 @@
     return $field['indexShow'];
   });
 
+
 @endphp
 
 <div class="card">

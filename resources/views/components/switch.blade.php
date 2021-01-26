@@ -1,33 +1,38 @@
 
+
 <div class="custom-control custom-switch form-group" id='switchContainer'>
   <input 
     type="checkbox" 
     class="custom-control-input" 
-    id="customSwitch1" 
-    name="{{$name}}" 
-    @if($value == 'Yes')
-    checked
+    id="customSwitch1"
+    @if($value == 1)
+      checked
     @endif
   >
+  
+  <input 
+    type="hidden"  
+    id="hiddenInput" 
+    name="{{$name}}"
+    value='{{$value ?: 0 }}'
+  >
+
   <label class="custom-control-label" id='custom-control-label' for="customSwitch1">{{$label}}</label>
 
   @if ($errors->has($name))
         <span class="text-danger">{{ $errors->first($name) }}</span>
-    @endif
+  @endif
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
 
-    let name = $('#customSwitch1').attr('name');
-
-
     $('#customSwitch1').change((e)=>{
       if(!e.target.checked){
-         var input = $("<input>").attr({type:'hidden',name,id:'hiddenOff'}).val("off");
-          $('#switchContainer').append($(input)); 
+          $('#hiddenInput').val(0); 
       }else{
-        $("#hiddenOff").remove()
+        
+          $('#hiddenInput').val(1);
       }
     })
      

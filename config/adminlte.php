@@ -242,9 +242,30 @@ return [
             'label_color' => 'success',
         ],
 
+        ['header' => 'Products'],
+        [
+            'text'        => 'Product',
+            'url'         => 'admin/products',
+            'icon'        => "fab fa-product-hunt"
+        ],
         [
             'text'        => 'Category',
             'url'         => 'admin/categories',
+            'icon'        => 'fas fa-clipboard-list',
+        ],
+        [
+            'text'        => 'Ingredients',
+            'url'         => 'admin/ingredients',
+            'icon'        => 'fas fa-clipboard-list',
+        ],
+        [
+            'text'        => 'Addable Items',
+            'url'         => 'admin/addableitems',
+            'icon'        => 'fas fa-clipboard-list',
+        ],
+        [
+            'text'        => 'Nutritional Items',
+            'url'         => 'admin/nutritionalitems',
             'icon'        => 'fas fa-clipboard-list',
         ],
 

@@ -12,19 +12,22 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['formatted_price','isActive'];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
     
-    public function ingredients(){
-        return $this->belongsToMany(Ingredient::class);
+    public function getFormattedPriceAttribute($value){
+
+        return money($this->price, 'BDT',true)->format();
+        
     }
 
-    public function addableItems(){
-        return $this->belongsToMany(AddableItem::class);
+    public function getIsActiveAttribute($value){
+
+        return $this->active ? 'Yes' : 'No';
+        
     }
-    // public function nutritionalValues(){
-    //     return $this->belongsToMany(NutritionalItem::class,'products_nutritional_values','product_id','item_id')->withPivot('value');
-    // }
     
 }

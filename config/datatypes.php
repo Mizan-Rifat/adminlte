@@ -179,6 +179,7 @@ return [
             ],
             
         ],
+    ],
     'products'=>[
         'nextBtn'=>true,
         'fields'=>[
@@ -201,40 +202,11 @@ return [
                 
             ],
             [
-                'label'=>'Ingredients',
-                'column'=>'ingredients',
-                'field'=>'ingredients',
-                'edit_field'=>'ingredients',
-                'type'=>'relationship-multi-select',
-                'relationship_field'=>'name',
-                "indexShow"=>true,
-                
-            ],
-            [
-                'label'=>'Addable Items',
-                'column'=>'addableItems',
-                'field'=>'addableItems',
-                'edit_field'=>'addableItems',
-                'type'=>'relationship-multi-select',
-                'relationship_field'=>'name',
-                "indexShow"=>true,
-                
-            ],
-            // [
-            //     'label'=>'Nutritional Values',
-            //     'column'=>'addableItems',
-            //     'field'=>'nutritionalValues',
-            //     'edit_field'=>'addableItems',
-            //     'type'=>'multi-select-pivot',
-            //     "indexShow"=>false,
-                
-            // ],
-            [
                 'label'=>'Image',
                 'column'=>'image',
                 'field'=>'image',
                 'edit_field'=>'image',
-                'type'=>'images',
+                'type'=>'image',
                 "indexShow"=>true,
             ],
             [
@@ -256,7 +228,7 @@ return [
             [
                 'label'=>'Active',
                 'column'=>'active',
-                'field'=>'active',
+                'field'=>'isActive',
                 'edit_field'=>'active',
                 'type'=>'switch',
                 "indexShow"=>true,
