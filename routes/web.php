@@ -6,10 +6,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Akaunting\Money\Currency;
+use App\Events\ProductDeleted;
 use App\Http\Requests\NutritionalItemRequest;
 use App\Models\AddableItem;
 use App\Models\NutritionalItem;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -27,7 +29,11 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    NutritionalItem::factory()->count(10)->create();
+    $product = collect([Product::find(3)]);
+
+    return $product->map(function($uu){
+        return 'f';
+    });
 });
 
 

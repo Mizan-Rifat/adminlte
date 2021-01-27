@@ -202,6 +202,16 @@ return [
                 
             ],
             [
+                'label'=>'Ingredients',
+                'column'=>'ingredients',
+                'field'=>'ingredients',
+                'edit_field'=>'ingredients',
+                'type'=>'relationship-multi-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            [
                 'label'=>'Image',
                 'column'=>'image',
                 'field'=>'image',
