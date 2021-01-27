@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductDeleted;
+use App\Events\ProductUpdated;
 use App\Http\Requests\ProductRequest;
 use App\Models\AddableItem;
 use App\Models\Category;
@@ -9,6 +11,7 @@ use App\Models\Ingredient;
 use App\Models\NutritionalItem;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +24,7 @@ class ProductController extends Controller
         Gate::authorize(get_gate_action('Product','browse'));
 
         $dataType = 'product';
-        $data = Product::with('category')->get();
+        $data = Product::with('category','ingredients')->get();
 
         return view('admin.bread.index',compact(
             'data',
@@ -35,14 +38,9 @@ class ProductController extends Controller
 
         $validatedData = $request->validated();
 
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $file->store('images/products');
-            $validatedData['image'] = "images/products/".$file->hashName();
-        }
-
         $product = Product::create($validatedData);
 
+        ProductUpdated::dispatch($product,$validatedData);
 
         return redirect()->route('products.index')->with('message', 'Created Successfully!');
     }
@@ -51,7 +49,7 @@ class ProductController extends Controller
     {
         Gate::authorize(get_gate_action('Product','show'));
 
-        $product->load('category');
+        $product->load('category','ingredients');
 
         $dataType = 'product';
         $data = $product;
@@ -67,17 +65,19 @@ class ProductController extends Controller
         
         Gate::authorize(get_gate_action('Product','update'));
 
-        $product->load('category');
+        $product->load('category','ingredients');
         
         $dataType = 'product';
         $data = $product;
     
         $categories = Category::get(['id','name']);
+        $ingredients = Ingredient::get(['id','name']);
   
         return view('admin.bread.add-edit',compact(
             'data',
             'dataType',
             'categories',
+            'ingredients',
         ));
     }
 
@@ -87,10 +87,12 @@ class ProductController extends Controller
 
         $dataType='product';
         $categories = Category::get(['id','name']);
+        $ingredients = Ingredient::get(['id','name']);
 
         return view('admin.bread.add-edit',compact(
             'dataType',
             'categories',
+            'ingredients',
         ));
     }
 
@@ -101,17 +103,11 @@ class ProductController extends Controller
 
         $validatedData = $request->validated();
 
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $file->store('images/products');
-            $validatedData['image'] = "images/products/".$file->hashName();
-
-            if($product->image != null){
-                Storage::delete($product->image);
-            }
-        }
+        $prevImage = $product->image;
 
         $product->update($validatedData);
+
+        ProductUpdated::dispatch($product,$validatedData,$prevImage);
         
         return redirect()->back()->with('message', 'Updated Successfully!');
     }
@@ -120,9 +116,9 @@ class ProductController extends Controller
     {
         Gate::authorize(get_gate_action('Product','destroy'));
 
-        Storage::delete($product->image);
-
         $product->delete();
+
+        ProductDeleted::dispatch($product);
 
         return redirect()->route('products.index')->with('message', 'Deleted Successfully!');
 
@@ -141,36 +137,14 @@ class ProductController extends Controller
             'ids.*.numeric'=> 'The id must be numeric.'
         ]);
 
-        $images = Product::whereIn('id',$request->ids)->pluck('image');
-
-        foreach ($images as $image) {
-            Storage::delete($image);
-        }
+        $products = Product::whereIn('id',$request->ids)->get();
 
         Product::destroy($request->ids);
+
+        ProductDeleted::dispatch($products);
 
         return redirect()->route('products.index')->with('message', 'Deleted Successfully!');
     }
 
-    public function removeImage(Product $product,Request $request){
 
-        Gate::authorize(get_gate_action('Product','update'));
-
-        $images = json_decode($product->image);
-
-        if (($key = array_search($request->image, $images)) !== false) {
-            unset($images[$key]);
-        }
-
-
-        $product->update([
-            'image'=>json_encode(array_values($images)),
-        ]);
-
-        Storage::delete(str_replace("images/","",$request->image));
-
-        return response()->json([
-            'message' => 'Image removed successfully'
-        ],200);
-    }
 }

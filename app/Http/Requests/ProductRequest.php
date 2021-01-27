@@ -28,7 +28,9 @@ class ProductRequest extends FormRequest
                 'name' => ['required','string','unique:products,name'],
                 'image' => ['image','max:5120'],
                 'category_id' => ['required','numeric','exists:categories,id'],
-                'description' => ['string'],
+                'ingredients' => ['array'],
+                'ingredients.*' => ['numeric','exists:ingredients,id'],
+                'description' => ['nullable','string'],
                 'price'=>['required','regex:/^\d+(\.\d{1,2})?$/'],
                 'active' => ['boolean'],
             ];
@@ -36,8 +38,10 @@ class ProductRequest extends FormRequest
             return [
                 'name' => ['string',Rule::unique('products','name')->ignore($this->product)],
                 'category_id' => ['numeric','exists:categories,id'],
+                'ingredients' => ['array'],
+                'ingredients.*' => ['numeric','exists:ingredients,id'],
                 'image' => ['image','max:5120'],
-                'description' => ['string'],
+                'description' => ['nullable','string'],
                 'price'=>['regex:/^\d+(\.\d{1,2})?$/'],
                 'active' => ['boolean'],
             ];
