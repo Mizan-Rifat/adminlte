@@ -36,5 +36,9 @@ class ProductUpdatedListener
         if(isset($event->data['ingredients'])){
             $event->product->ingredients()->sync($event->data['ingredients']);
         }
+
+        if(isset($event->data['addableItems'])){
+            $event->product->addableItems()->sync($event->data['addableItems']);
+        }
     }
 }

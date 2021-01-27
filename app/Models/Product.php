@@ -21,6 +21,10 @@ class Product extends Model
     public function ingredients(){
         return $this->belongsToMany(Ingredient::class);
     }
+
+    public function addableItems(){
+        return $this->belongsToMany(AddableItem::class);
+    }
     
     public function getFormattedPriceAttribute($value){
 

@@ -212,6 +212,16 @@ return [
                 
             ],
             [
+                'label'=>'Addable Items',
+                'column'=>'addableItems',
+                'field'=>'addableItems',
+                'edit_field'=>'addableItems',
+                'type'=>'relationship-multi-select',
+                'relationship_field'=>'name',
+                "indexShow"=>true,
+                
+            ],
+            [
                 'label'=>'Image',
                 'column'=>'image',
                 'field'=>'image',

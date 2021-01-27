@@ -29,11 +29,8 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    $product = collect([Product::find(3)]);
-
-    return $product->map(function($uu){
-        return 'f';
-    });
+    $product = Product::find(13);
+    return $product->addableItems;
 });
 
 

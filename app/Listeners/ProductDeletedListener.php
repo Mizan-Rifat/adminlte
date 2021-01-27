@@ -27,6 +27,7 @@ class ProductDeletedListener
             Storage::delete($product->image);
 
             $product->ingredients()->sync([]);
+            $product->addableItems()->sync([]);
         });
         
     }

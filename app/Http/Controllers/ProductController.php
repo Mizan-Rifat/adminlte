@@ -24,7 +24,7 @@ class ProductController extends Controller
         Gate::authorize(get_gate_action('Product','browse'));
 
         $dataType = 'product';
-        $data = Product::with('category','ingredients')->get();
+        $data = Product::with('category','ingredients','addableItems')->get();
 
         return view('admin.bread.index',compact(
             'data',
@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         Gate::authorize(get_gate_action('Product','show'));
 
-        $product->load('category','ingredients');
+        $product->load('category','ingredients','addableItems');
 
         $dataType = 'product';
         $data = $product;
@@ -65,19 +65,21 @@ class ProductController extends Controller
         
         Gate::authorize(get_gate_action('Product','update'));
 
-        $product->load('category','ingredients');
+        $product->load('category','ingredients','addableItems');
         
         $dataType = 'product';
         $data = $product;
     
         $categories = Category::get(['id','name']);
         $ingredients = Ingredient::get(['id','name']);
+        $addableItems = AddableItem::get(['id','name']);
   
         return view('admin.bread.add-edit',compact(
             'data',
             'dataType',
             'categories',
             'ingredients',
+            'addableItems',
         ));
     }
 
@@ -88,11 +90,13 @@ class ProductController extends Controller
         $dataType='product';
         $categories = Category::get(['id','name']);
         $ingredients = Ingredient::get(['id','name']);
+        $addableItems = AddableItem::get(['id','name']);
 
         return view('admin.bread.add-edit',compact(
             'dataType',
             'categories',
             'ingredients',
+            'addableItems',
         ));
     }
 
