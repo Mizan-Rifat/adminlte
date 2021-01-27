@@ -25,6 +25,10 @@ class Product extends Model
     public function addableItems(){
         return $this->belongsToMany(AddableItem::class);
     }
+
+    public function nutritionalValues(){
+        return $this->belongsToMany(NutritionalItem::class)->withPivot('value');
+    }
     
     public function getFormattedPriceAttribute($value){
 

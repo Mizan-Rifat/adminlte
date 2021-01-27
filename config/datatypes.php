@@ -221,6 +221,16 @@ return [
                 "indexShow"=>true,
                 
             ],
+            
+            [
+                'label'=>'Nutritional Values',
+                'column'=>'nutritionalValues',
+                'field'=>'nutritionalValues',
+                'edit_field'=>'addableItems',
+                'type'=>'multi-select-pivot',
+                "indexShow"=>false,
+                
+            ],
             [
                 'label'=>'Image',
                 'column'=>'image',

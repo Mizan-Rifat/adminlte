@@ -29,8 +29,8 @@ Route::get('/testview', function () {
     return view('test');
 });
 Route::get('/test', function () {
-    $product = Product::find(13);
-    return $product->addableItems;
+    $product = Product::find(18);
+    return $product->nutritionalValues;
 });
 
 
@@ -143,6 +143,11 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'update'])->name('nutritionalitems.update');
         Route::post('/bulkdestroy', [App\Http\Controllers\NutritionalItemController::class, 'bulkdestroy'])->name('nutritionalitems.bulkdestroy');
         Route::get('/{nutritionalItem}', [App\Http\Controllers\NutritionalItemController::class, 'show'])->name('nutritionalitems.show');
+    });
+
+    Route::group(['prefix'=>'product/nutritionalvalue'],function(){
+        Route::get('/edit/{product}', [App\Http\Controllers\NutritionalValueController::class, 'edit'])->name('nutritionalvalues.edit');
+        Route::post('/update/{product}', [App\Http\Controllers\NutritionalValueController::class, 'update'])->name('nutritionalvalues.update');
     });
 
 });

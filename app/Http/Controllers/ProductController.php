@@ -41,8 +41,9 @@ class ProductController extends Controller
         $product = Product::create($validatedData);
 
         ProductUpdated::dispatch($product,$validatedData);
+        
+        return redirect()->route('nutritionalvalues.edit',['product'=>$product->id]);
 
-        return redirect()->route('products.index')->with('message', 'Created Successfully!');
     }
 
     public function show(Product $product)
@@ -112,8 +113,9 @@ class ProductController extends Controller
         $product->update($validatedData);
 
         ProductUpdated::dispatch($product,$validatedData,$prevImage);
+
+        return redirect()->route('nutritionalvalues.edit',['product'=>$product->id]);
         
-        return redirect()->back()->with('message', 'Updated Successfully!');
     }
 
     public function destroy(Product $product)

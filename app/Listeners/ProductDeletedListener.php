@@ -28,6 +28,7 @@ class ProductDeletedListener
 
             $product->ingredients()->sync([]);
             $product->addableItems()->sync([]);
+            $product->nutritionalValues()->sync([]);
         });
         
     }
