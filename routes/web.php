@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Akaunting\Money\Currency;
 use App\Events\ProductDeleted;
+use App\Http\Controllers\HomeController;
 use App\Http\Requests\NutritionalItemRequest;
 use App\Models\AddableItem;
 use App\Models\NutritionalItem;
@@ -24,6 +25,9 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homepage');
+
 
 Route::get('/testview', function () {
     return view('test');

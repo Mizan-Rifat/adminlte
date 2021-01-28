@@ -21,63 +21,81 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="topbar">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div class="d-flex">
+                    <div class="logo item">
+                        <a class="" href="{{ url('/') }}">
+                            <img src="{{ asset('images/app/logo.svg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="delivery item">
+                        <h5>Pizza delivery Bishkek</h5>
+                        <p>60 minutes or pizza for free</p>
+                    </div>
+                    <div class="phone item">
+                        <div class="">
+                            <span>Call By</span>
+                            <img src="{{ asset('images/app/call1.svg') }}" alt="">
+                            <img src="{{ asset('images/app/call2.svg') }}" alt="">
+                            <img src="{{ asset('images/app/call3.svg') }}" alt="">
+                        </div>
+                        <div class="">
+                            <h5>0 (551) 550-550</h5>
+                        </div>
+                    </div>
+                    <div class="button item">
+                        <button class="btn">To come in</button>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
+
+        <div id="nav">
+            <div class="container" style='background:#F8FAFC'>
+
+                <nav>
+
+                    <ul>
+                        <li>
+                            <a href="">Pizza</a>
+                        </li>
+                        <li>
+                            <a href="">Combo</a>
+                            </li>
+                        <li>
+                            <a href="">Snacks</a>
+                        </li>
+                        <li>
+                            <a href="">Dessert</a>
+                        </li>
+                        <li>
+                            <a href="">Beverages</a>
+                        </li>
+                        <li>
+                            <a href="">Other goods</a>
+                        </li>
+                        <li>
+                            <a href="">Promotions</a>
+                        </li>
+                        <li>
+                            <a href="">Contacts</a>
+                        </li>
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        
+                    </ul>
+
+                </nav>
+            </div>
+        </div>
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 </html>

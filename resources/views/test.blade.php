@@ -1,24 +1,23 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Dashboard')
 
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
 
 @section('content')
 
 
-    
+   
+
+asdasdasda
+@stop
+
+
+@section('script')
+
+<script>
+
+console.log('sdfs')
+   
+</script>
 
 @stop
 
-@section('css')
-
-@stop
-
-@section('js')
-    <script> 
-    
-    </script>
-@stop
