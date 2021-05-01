@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="21px" height="20px" viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16618) - http://www.bohemiancoding.com/sketch -->
+    <title>phone</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path id="path-1" d="M639.312705,101.887422 C641.103841,101.094205 641.487655,99.3798323 641.410892,98.5866153 C641.334129,97.7933982 637.265694,95.3625718 636.242188,94.9019942 C635.218682,94.4414166 634.04165,95.9255001 633.478722,96.5651912 C632.890206,97.1792947 630.638493,95.3113965 629.666163,94.3646536 C629.666163,94.3646536 627.107398,91.4988372 627.695914,90.8847337 C628.28443,90.2706302 629.742926,89.0424232 629.231173,88.044505 C628.71942,87.0465868 626.135067,83.0549139 625.316263,83.0037386 C624.523046,82.9525633 622.834261,83.413141 622.117807,85.2298639 C621.401353,87.0465868 622,92.1125774 627,97 C632,101.887423 637.52157,102.680639 639.312705,101.887422 Z"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-17-Copy-4" sketch:type="MSArtboardGroup" transform="translate(-621.000000, -83.000000)">
+            <g id="phone">
+                <use fill="#FAAA47" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <use fill-opacity="0.300000012" fill="#FFFFFF" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
